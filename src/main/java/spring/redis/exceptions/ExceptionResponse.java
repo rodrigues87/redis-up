@@ -1,7 +1,7 @@
-package redis.exceptions;
+package spring.redis.exceptions;
 
 import lombok.Getter;
-import redis.constants.ErrorCodes;
+import spring.redis.constants.ErrorCodes;
 
 import java.io.Serial;
 import java.io.Serializable;

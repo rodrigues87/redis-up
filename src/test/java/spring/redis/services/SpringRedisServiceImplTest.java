@@ -14,7 +14,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import spring.redis.exceptions.CannotConvertDataException;
 import spring.redis.exceptions.CannotReadValueAsStringException;
-import spring.redis.services.imp.LiveloRedisServiceImpl;
+import spring.redis.services.imp.SpringRedisServiceImpl;
 
 
 import java.util.Collections;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class LiveloRedisServiceImplTest {
+public class SpringRedisServiceImplTest {
 	@Mock
 	private RedisTemplate<String, String> redisTemplate;
 	
@@ -43,7 +43,7 @@ public class LiveloRedisServiceImplTest {
 	private ObjectMapper objectMapper;
 	
 	@InjectMocks
-	private LiveloRedisServiceImpl redisService;
+	private SpringRedisServiceImpl redisService;
 	
 	@BeforeEach
 	void setUp() {

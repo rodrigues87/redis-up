@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import spring.redis.exceptions.CannotConvertDataException;
 import spring.redis.exceptions.CannotReadValueAsStringException;
-import spring.redis.services.LiveloRedisService;
+import spring.redis.services.SpringRedisService;
 
 
 import java.util.List;
@@ -16,13 +16,13 @@ import java.util.Set;
 
 @Slf4j
 @Service
-public class LiveloRedisServiceImpl implements LiveloRedisService {
+public class SpringRedisServiceImpl implements SpringRedisService {
 	
 	protected final RedisTemplate<String, String> redisTemplate;
 	
 	protected final ObjectMapper objectMapper;
 	
-	public LiveloRedisServiceImpl(RedisTemplate<String, String> redisTemplate, ObjectMapper objectMapper) {
+	public SpringRedisServiceImpl(RedisTemplate<String, String> redisTemplate, ObjectMapper objectMapper) {
 		this.redisTemplate = redisTemplate;
 		this.objectMapper = objectMapper;
 	}

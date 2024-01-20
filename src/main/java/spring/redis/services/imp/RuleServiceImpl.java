@@ -1,11 +1,12 @@
-package redis.services.imp;
+package spring.redis.services.imp;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import redis.dtos.RuleDTO;
-import redis.dtos.RuleResponseDTO;
-import redis.services.LiveloRedisService;
-import redis.services.RuleService;
+import spring.redis.dtos.RuleDTO;
+import spring.redis.dtos.RuleResponseDTO;
+import spring.redis.services.SpringRedisService;
+import spring.redis.services.RuleService;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -17,20 +18,20 @@ import java.util.stream.Collectors;
 @Service
 public class RuleServiceImpl implements RuleService {
 	
-	private final LiveloRedisService liveloRedisService;
+	private final SpringRedisService springRedisService;
 	
-	public RuleServiceImpl(LiveloRedisService liveloRedisService) {
-		this.liveloRedisService = liveloRedisService;
+	public RuleServiceImpl(SpringRedisService springRedisService) {
+		this.springRedisService = springRedisService;
 	}
 	
 	@Override
 	public void save(RuleDTO ruleDTO) {
-		liveloRedisService.save(ruleDTO.getKey(), ruleDTO.getValue());
+		springRedisService.save(ruleDTO.getKey(), ruleDTO.getValue());
 	}
 	
 	@Override
 	public RuleResponseDTO findAll() {
-		Set<String> keys = liveloRedisService.findAllKeys();
+		Set<String> keys = springRedisService.findAllKeys();
 		if (Objects.isNull(keys) || keys.isEmpty()) {
 			return RuleResponseDTO.builder().rules(Collections.emptyList()).build();
 		}
@@ -40,23 +41,23 @@ public class RuleServiceImpl implements RuleService {
 						RuleDTO
 								.builder()
 								.key(key)
-								.value(liveloRedisService.findByKey(key, Object.class))
+								.value(springRedisService.findByKey(key, Object.class))
 								.build()).collect(Collectors.toList()))
 				.build();
 	}
 	
 	@Override
 	public Object findByKey(String key) {
-		return liveloRedisService.findByKey(key, Object.class);
+		return springRedisService.findByKey(key, Object.class);
 	}
 	
 	@Override
 	public void delete(String key) {
-		liveloRedisService.delete(key);
+		springRedisService.delete(key);
 	}
 	
 	@Override
 	public void delete(List<String> keys) {
-		liveloRedisService.delete(keys);
+		springRedisService.delete(keys);
 	}
 }

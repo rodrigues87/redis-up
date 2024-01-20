@@ -1,4 +1,4 @@
-package redis.services;
+package spring.redis.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import redis.dtos.RuleDTO;
-import redis.dtos.RuleResponseDTO;
-import redis.services.imp.LiveloRedisServiceImpl;
-import redis.services.imp.RuleServiceImpl;
+import spring.redis.dtos.RuleDTO;
+import spring.redis.dtos.RuleResponseDTO;
+import spring.redis.services.imp.SpringRedisServiceImpl;
+import spring.redis.services.imp.RuleServiceImpl;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 public class RuleServiceImplTest {
 	
 	@Mock
-	private LiveloRedisServiceImpl liveloRedisService;
+	private SpringRedisServiceImpl springRedisService;
 	
 	@InjectMocks
 	private RuleServiceImpl ruleService;
@@ -38,7 +38,7 @@ public class RuleServiceImplTest {
 	@Mock
 	private RedisTemplate<String, String> redisTemplate;
 	
-	@MockBean
+	@Mock
 	private ObjectMapper objectMapper;
 	
 	@Mock
@@ -52,7 +52,7 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	void save_ShouldCallLiveloRedisServiceSave() {
+	void save_ShouldCallspringRedisServiceSave() {
 		// Arrange
 		RuleDTO ruleDTO = RuleDTO.builder().value("value").key("key").build();
 		
@@ -60,13 +60,13 @@ public class RuleServiceImplTest {
 		ruleService.save(ruleDTO);
 		
 		// Assert
-		verify(liveloRedisService, times(1)).save(ruleDTO.getKey(), ruleDTO.getValue());
+		verify(springRedisService, times(1)).save(ruleDTO.getKey(), ruleDTO.getValue());
 	}
 	
 	@Test
 	void findAll_ShouldReturnEmptyResponseDTO_WhenNoKeysFound() {
 		// Arrange
-		when(liveloRedisService.findAllKeys()).thenReturn(Collections.emptySet());
+		when(springRedisService.findAllKeys()).thenReturn(Collections.emptySet());
 		
 		// Act
 		RuleResponseDTO result = ruleService.findAll();
@@ -80,12 +80,12 @@ public class RuleServiceImplTest {
 	void findAll_ShouldReturnResponseDTO_WhenKeysFound() {
 		// Arrange
 		Set<String> mockKeys = Set.of("key1", "key2");
-		when(liveloRedisService.findAllKeys()).thenReturn(mockKeys);
+		when(springRedisService.findAllKeys()).thenReturn(mockKeys);
 		
 		
 		// Mocking findByKey calls
-		when(liveloRedisService.findByKey("key1", Object.class)).thenReturn(Optional.of("value1"));
-		when(liveloRedisService.findByKey("key2", Object.class)).thenReturn(Optional.of("value2"));
+		when(springRedisService.findByKey("key1", Object.class)).thenReturn(Optional.of("value1"));
+		when(springRedisService.findByKey("key2", Object.class)).thenReturn(Optional.of("value2"));
 		
 		// Act
 		RuleResponseDTO result = ruleService.findAll();
@@ -104,7 +104,7 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	void findByKey_ShouldCallLiveloRedisServiceFindByKey() {
+	void findByKey_ShouldCallspringRedisServiceFindByKey() {
 		// Arrange
 		String key = "key";
 		
@@ -112,11 +112,11 @@ public class RuleServiceImplTest {
 		ruleService.findByKey(key);
 		
 		// Assert
-		verify(liveloRedisService, times(1)).findByKey(key, Object.class);
+		verify(springRedisService, times(1)).findByKey(key, Object.class);
 	}
 	
 	@Test
-	void delete_ShouldCallLiveloRedisServiceDelete() {
+	void delete_ShouldCallspringRedisServiceDelete() {
 		// Arrange
 		String key = "key";
 		
@@ -124,11 +124,11 @@ public class RuleServiceImplTest {
 		ruleService.delete(key);
 		
 		// Assert
-		verify(liveloRedisService, times(1)).delete(key);
+		verify(springRedisService, times(1)).delete(key);
 	}
 	
 	@Test
-	void delete_ShouldCallLiveloRedisServiceDeleteForMultipleKeys() {
+	void delete_ShouldCallspringRedisServiceDeleteForMultipleKeys() {
 		// Arrange
 		List<String> keys = Arrays.asList("key1", "key2");
 		
@@ -136,7 +136,7 @@ public class RuleServiceImplTest {
 		ruleService.delete(keys);
 		
 		// Assert
-		verify(liveloRedisService, times(1)).delete(keys);
+		verify(springRedisService, times(1)).delete(keys);
 	}
 	
 }

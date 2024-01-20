@@ -1,8 +1,7 @@
-package redis.exceptions;
+package spring.redis.exceptions;
 
 import org.junit.jupiter.api.Test;
-import redis.constants.ErrorCodes;
-import redis.exceptions.ExceptionResponse;
+import spring.redis.constants.ErrorCodes;
 
 import java.util.Collections;
 

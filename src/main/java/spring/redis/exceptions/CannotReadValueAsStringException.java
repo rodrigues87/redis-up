@@ -1,4 +1,4 @@
-package redis.exceptions;
+package spring.redis.exceptions;
 
 import java.io.Serial;
 

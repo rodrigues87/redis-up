@@ -1,4 +1,4 @@
-package redis.controllers;
+package spring.redis.controllers;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import redis.dtos.RuleDTO;
-import redis.dtos.RuleResponseDTO;
-import redis.services.RuleService;
+import spring.redis.dtos.RuleDTO;
+import spring.redis.dtos.RuleResponseDTO;
+import spring.redis.services.RuleService;
 
 @RestController
-@ConditionalOnProperty(name = "livelo.redis.controller.enable", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "spring.redis.controller.enable", havingValue = "true", matchIfMissing = true)
 @RequestMapping("/rules")
 public class RuleController {
 	

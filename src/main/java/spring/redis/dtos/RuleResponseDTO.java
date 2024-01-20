@@ -1,4 +1,4 @@
-package redis.dtos;
+package spring.redis.dtos;
 
 import lombok.Builder;
 import lombok.Getter;

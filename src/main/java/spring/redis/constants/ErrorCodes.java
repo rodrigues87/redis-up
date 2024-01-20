@@ -1,5 +1,8 @@
-package redis.constants;
+package spring.redis.constants;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorCodes {
 	INTERNAL_SERVER_ERROR("Internal server error"),
 	INVALID_REQUEST("Invalid request"),
@@ -12,8 +15,5 @@ public enum ErrorCodes {
     ErrorCodes(String message) {
     	this.message = message;
     }
-
-	public String getMessage() {
-    	return message;
-	}
+	
 }

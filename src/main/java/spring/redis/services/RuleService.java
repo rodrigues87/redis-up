@@ -1,7 +1,9 @@
-package redis.services;
+package spring.redis.services;
 
-import redis.dtos.RuleDTO;
-import redis.dtos.RuleResponseDTO;
+
+
+import spring.redis.dtos.RuleDTO;
+import spring.redis.dtos.RuleResponseDTO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package redis.exceptions.handler;
+package spring.redis.exceptions.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import redis.constants.ErrorCodes;
-import redis.exceptions.CannotConvertDataException;
-import redis.exceptions.CannotReadValueAsStringException;
-import redis.exceptions.ExceptionResponse;
+import spring.redis.constants.ErrorCodes;
+import spring.redis.exceptions.CannotConvertDataException;
+import spring.redis.exceptions.CannotReadValueAsStringException;
+import spring.redis.exceptions.ExceptionResponse;
+
 
 @ControllerAdvice
 @Slf4j
