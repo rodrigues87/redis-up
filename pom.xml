@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>redis</groupId>
 	<artifactId>spring-redis</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>spring-redis</name>
 	<description>spring-redis</description>
 	<properties>
