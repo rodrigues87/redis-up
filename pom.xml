@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>redis</groupId>
-	<artifactId>spring-redis</artifactId>
+	<artifactId>redis-up</artifactId>
 	<version>0.0.1</version>
-	<name>spring-redis</name>
-	<description>spring-redis</description>
+	<name>redis-up</name>
+	<description>redis-up</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -56,9 +56,13 @@
 	</build>
 
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/rodrigues87/spring-redis</url>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 
