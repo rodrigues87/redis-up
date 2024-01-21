@@ -8,9 +8,9 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>redis</groupId>
+	<groupId>com.redis.up</groupId>
 	<artifactId>redis-up</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3</version>
 	<name>redis-up</name>
 	<description>redis-up</description>
 	<properties>
@@ -41,28 +41,17 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>3.6.0</version>
 			</plugin>
 		</plugins>
 	</build>
 
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/rodrigues87/redis-up</url>
 		</repository>
 	</distributionManagement>
 
